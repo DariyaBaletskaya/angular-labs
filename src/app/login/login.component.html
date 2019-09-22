@@ -1,0 +1,24 @@
+<div class="container">
+  <form *ngIf="user; else loading">
+    <div *ngFor="let lable of lables">
+      <ly-field>
+        <input
+          lyNativeControl
+          id="{{ lable }}"
+          name="{{ lable }}"
+          type="{{ lable }}"
+          [(ngModel)]="user[lable]"
+        />
+      </ly-field>
+    </div>
+
+    <app-button
+      (onclick)="redirectToProfile()"
+      [btnLable]="btnLable"
+    ></app-button>
+  </form>
+
+  <ng-template #loading>
+    <app-spinner></app-spinner>
+  </ng-template>
+</div>
