@@ -2,22 +2,22 @@ import { IUser } from '../services/user.service';
 
 export class User implements IUser {
   username: string;
+  email: string;
   password: string;
-  country: string;
+  language: string;
   gender: string;
-  age: number;
 
   constructor(
     username = 'Dariya',
+    email = 'demo@demo.com',
     password = 'qwerty',
-    country = 'Ukraine',
-    gender = 'female',
-    age = 19
+    language = 'English',
+    gender = 'female'
   ) {
     this.username = username;
+    this.email = email;
     this.password = password;
-    this.country = country;
+    this.language = language;
     this.gender = gender;
-    this.age = age;
   }
 }

@@ -6,10 +6,10 @@ import { User } from 'src/models/user.model';
 
 export interface IUser {
   username: string;
+  email: string;
   password: string;
-  country: string;
+  language: string;
   gender: string;
-  age: number;
 }
 
 @Injectable()

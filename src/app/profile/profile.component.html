@@ -1,22 +1,15 @@
 <div class="container">
-  <app-button
-    class="logout-btn"
-    [btnLable]="btnLable"
-    (onclick)="onLogoutClicked()"
-  ></app-button>
-  <ly-card>
-    <ly-card-media
-      bgImg="https://firebasestorage.googleapis.com/v0/b/alyle-ui.appspot.com/o/img%2FMountains-Blue.jpg?alt=media&token=d04f0279-79c6-4752-8b5a-cccd73720243"
-      title="Mountains blue"
-    ></ly-card-media>
-    <ly-card-content>
-      <h2 lyTyp="headline" gutterBottom>
-        {{ user.username }}
-      </h2>
-      <p lyTyp="body1">Age: {{ user.age }}</p>
-      <p lyTyp="body1">Country: {{ user.country }}</p>
-      <p lyTyp="body1" *ngIf="user.gender === 'female'" appEmoji="👩🏻"></p>
-      <p lyTyp="body1" *ngIf="user.gender === 'male'" appEmoji="👱🏻"></p>
-    </ly-card-content>
-  </ly-card>
+    <app-button class="logout-btn" [btnLable]="btnLable" (onclick)="onLogoutClicked()"></app-button>
+    <ly-card>
+        <ly-card-media bgImg="https://firebasestorage.googleapis.com/v0/b/alyle-ui.appspot.com/o/img%2FMountains-Blue.jpg?alt=media&token=d04f0279-79c6-4752-8b5a-cccd73720243" title="Mountains blue"></ly-card-media>
+        <ly-card-content>
+            <h2 lyTyp="headline" gutterBottom>
+                {{ user.username }}
+            </h2>
+            <p lyTyp="body1">Email: {{ user.email }}</p>
+            <p lyTyp="body1">Language: {{ user.language }}</p>
+            <p lyTyp="body1" *ngIf="user.gender === 'female'" appEmoji="👩🏻"></p>
+            <p lyTyp="body1" *ngIf="user.gender === 'male'" appEmoji="👱🏻"></p>
+        </ly-card-content>
+    </ly-card>
 </div>
