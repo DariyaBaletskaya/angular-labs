@@ -1,7 +1,9 @@
 <div class="container-fluid d-flex flex-column justify-content-center align-items-center vh-100">
+
+
     <form *ngIf="user; else loading" class="border border-secondary p-4" [formGroup]="loginForm">
         <div>
-            <ly-field class="w-16">
+            <ly-field class="w-16 ">
                 <input lyNativeControl id="username" type="text" name="username" placeholder="Username" formControlName="username" />
             </ly-field>
 
@@ -29,32 +31,14 @@
         <div>
             <ly-radio-group formControlName="gender">
                 <span>Gender: </span>
-                <ly-radio value="male">Male</ly-radio>
-                <ly-radio value="female">Female</ly-radio>
+                <ly-radio value="male ">Male</ly-radio>
+                <ly-radio value="female ">Female</ly-radio>
             </ly-radio-group>
         </div>
-        <app-button (onclick)="redirectToProfile()" [btnLable]="btnLable"></app-button>
+        <app-button (onclick)="redirectToProfile() " [btnLable]="btnLable "></app-button>
     </form>
 
     <ng-template #loading>
         <mat-spinner></mat-spinner>
     </ng-template>
 </div>
-<!-- <form *ngIf="user; else loading">
-    <div *ngFor="let lable of lables">
-      <ly-field>
-        <input
-          lyNativeControl
-          id="{{ lable }}"
-          name="{{ lable }}"
-          type="{{ lable }}"
-          [(ngModel)]="user[lable]"
-        />
-      </ly-field>
-    </div>
-
-    <app-button
-      (onclick)="redirectToProfile()"
-      [btnLable]="btnLable"
-    ></app-button>
-  </form> -->

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   FormControl,
@@ -6,25 +6,23 @@ import {
   FormGroupDirective,
   NgForm,
   FormBuilder,
-  FormGroup
+  FormGroup,
+  AbstractControl
 } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
 
 import { UserService } from '../../services/user.service';
 import { User } from 'src/models/user.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from '../modal/modal.component';
 
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(
-      control &&
-      control.invalid &&
-      (control.dirty || control.touched || isSubmitted)
-    );
+export class MyErrorStateMatcher {
+  isErrorState(formGroup: FormGroup, lables: Array<string>): boolean {
+    for (const lable of lables) {
+      if (formGroup.controls[lable].invalid) {
+        return true;
+      }
+    }
+    return false;
   }
 }
 
@@ -36,13 +34,16 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class LoginComponent implements OnInit {
   user: User;
   btnLable = 'Sign in';
+  lables = ['username', 'email', 'password', 'language', 'gender'];
+
   loginForm: FormGroup;
   matcher = new MyErrorStateMatcher();
 
   constructor(
     private router: Router,
     private userService: UserService,
-    private formBuider: FormBuilder
+    private formBuider: FormBuilder,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit() {
@@ -68,7 +69,12 @@ export class LoginComponent implements OnInit {
       );
   }
 
-  login() {
+  isLoginSuccess(): boolean {
+    if (this.matcher.isErrorState(this.loginForm, this.lables)) {
+      this.modalService.open(ModalComponent);
+      return false;
+    }
+
     this.userService.setUser(
       new User(
         this.loginForm.controls.username.value,
@@ -78,10 +84,12 @@ export class LoginComponent implements OnInit {
         this.loginForm.controls.gender.value
       )
     );
+    return true;
   }
 
   redirectToProfile() {
-    this.login();
-    this.router.navigate(['/profile']);
+    if (this.isLoginSuccess()) {
+      this.router.navigate(['/profile']);
+    }
   }
 }

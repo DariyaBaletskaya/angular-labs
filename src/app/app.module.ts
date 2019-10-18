@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { ButtonComponent } from './button/button.component';
-import { SpinnerComponent } from './spinner/spinner.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EmojiDirective } from './emoji.directive';
 
@@ -27,6 +26,7 @@ import { LyCardModule } from '@alyle/ui/card';
 import { LySelectModule } from '@alyle/ui/select';
 import { LyIconModule } from '@alyle/ui/icon';
 import { LyBadgeModule } from '@alyle/ui/badge';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -34,8 +34,8 @@ import { LyBadgeModule } from '@alyle/ui/badge';
     ProfileComponent,
     LoginComponent,
     ButtonComponent,
-    SpinnerComponent,
-    EmojiDirective
+    EmojiDirective,
+    ModalComponent
   ],
   imports: [
     NgbModule,
@@ -63,6 +63,7 @@ import { LyBadgeModule } from '@alyle/ui/badge';
     { provide: LY_THEME, useClass: MinimaLight, multi: true },
     UserService
   ],
+  entryComponents: [ModalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
