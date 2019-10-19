@@ -4,20 +4,20 @@ export class User implements IUser {
   username: string;
   email: string;
   password: string;
-  language: string;
+  city: string;
   gender: string;
 
   constructor(
     username = 'Dariya',
     email = 'demo@demo.com',
     password = 'qwerty',
-    language = 'English',
+    city = 'Odessa',
     gender = 'female'
   ) {
     this.username = username;
     this.email = email;
     this.password = password;
-    this.language = language;
+    this.city = city;
     this.gender = gender;
   }
 }

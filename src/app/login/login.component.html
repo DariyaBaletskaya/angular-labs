@@ -1,6 +1,5 @@
 <div class="container-fluid d-flex flex-column justify-content-center align-items-center vh-100">
 
-
     <form *ngIf="user; else loading" class="border border-secondary p-4" [formGroup]="loginForm">
         <div>
             <ly-field class="w-16 ">
@@ -21,10 +20,10 @@
         </div>
         <div>
             <ly-field class="w-16">
-                <ly-select placeholder="Select Language" formControlName="language">
-                    <ly-option value="ukranian">Ukranian</ly-option>
-                    <ly-option value="english">English</ly-option>
-                    <ly-option value="german">German</ly-option>
+                <ly-select placeholder="Select City" formControlName="city">
+                    <ly-option value="odessa">Odessa</ly-option>
+                    <ly-option value="kyiv">Kiev</ly-option>
+                    <ly-option value="lviv">Lviv</ly-option>
                 </ly-select>
             </ly-field>
         </div>

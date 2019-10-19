@@ -1,17 +1,16 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  .logout-btn {
+.logout-btn {
     position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0.5rem;
-  }
-  ly-card {
-    min-width: 300px;
-    position: absolute;
-    top: calc(50% - 200px);
-  }
+    top: 0.3rem;
+    right: 0.3rem;
+}
+
+.min-w-20 {
+    min-width: 20rem;
+}
+
+@media (max-width: 851px) {
+    .logout-btn {
+        top: unset;
+        bottom: 0.3rem;
+    }
 }

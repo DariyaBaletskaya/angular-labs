@@ -1,19 +1,13 @@
-import { Component, OnInit, TemplateRef, Input } from '@angular/core';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  FormControl,
-  Validators,
-  FormGroupDirective,
-  NgForm,
-  FormBuilder,
-  FormGroup,
-  AbstractControl
-} from '@angular/forms';
 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { ModalComponent } from '../modal/modal.component';
+import { WeatherService } from 'src/services/weather.service';
 import { UserService } from '../../services/user.service';
 import { User } from 'src/models/user.model';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalComponent } from '../modal/modal.component';
 
 export class MyErrorStateMatcher {
   isErrorState(formGroup: FormGroup, lables: Array<string>): boolean {
@@ -34,7 +28,7 @@ export class MyErrorStateMatcher {
 export class LoginComponent implements OnInit {
   user: User;
   btnLable = 'Sign in';
-  lables = ['username', 'email', 'password', 'language', 'gender'];
+  lables = ['username', 'email', 'password', 'city', 'gender'];
 
   loginForm: FormGroup;
   matcher = new MyErrorStateMatcher();
@@ -51,7 +45,7 @@ export class LoginComponent implements OnInit {
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      language: ['', Validators.required],
+      city: ['', Validators.required],
       gender: ['', Validators.required]
     });
 
@@ -63,7 +57,7 @@ export class LoginComponent implements OnInit {
             user.username,
             user.email,
             user.password,
-            user.language,
+            user.city,
             user.gender
           ))
       );
@@ -80,10 +74,11 @@ export class LoginComponent implements OnInit {
         this.loginForm.controls.username.value,
         this.loginForm.controls.email.value,
         this.loginForm.controls.password.value,
-        this.loginForm.controls.language.value,
+        this.loginForm.controls.city.value,
         this.loginForm.controls.gender.value
       )
     );
+
     return true;
   }
 
